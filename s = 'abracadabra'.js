@@ -1,19 +1,27 @@
-s = 'abracadabra'
-alph = new Array();
-for (i = 0; i < s.length; i++) {
-	if (alph[s.charAt(i)])
-		alph[s.charAt(i)]++;
-	else
-		alph[s.charAt(i)] = 1;
+let inputText = 'abracadabra'
+let alph = []
+let n = 0
+let chars = ""
+let Hentropy = 0
+let powerofalph = 0
+
+
+for(let index = 0; index < inputText.length; index++)
+{
+    if (alph[inputText.charAt(index)])
+        alph[inputText.charAt(index)]++
+    else {
+        n++
+        chars += inputText.charAt(index)
+        alph[inputText.charAt(index)] = 1
+    }
 }
-powerofalph = 0;
-for (i in alph) {
-	alph[i] /= s.length;
-	powerofalph++;
-}
-entropia = 0;
-for (i in alph) {
-	entropia -= alph[i] * Math.log(alph[i]);
-}
-entropia /= Math.log(powerofalph)
-console.log(entropia);
+
+
+if (n !== 1)
+    for (let index = 0; index < n; index++)
+    {
+        powerofalph = alph[chars.charAt(index)]/inputText.length
+        Hentropy -= powerofalph * (Math.log(powerofalph)/Math.log(n))
+    }
+console.log (Hentropy)
